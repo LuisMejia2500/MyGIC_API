@@ -11,12 +11,14 @@ api=FastAPI()
 @api.post("/producto/")
 async def auth_producto(producto_in:ProductoIn):
   producto_in_db =get_producto(producto_in.codigo_producto)
-  if producto_in_db.codigo_producto == None:
-    guardar_producto=actualizar_producto(producto_in.dict())
+  if producto_in_db!= None:
+    return{"estado":"El producto ya esta registrado"}
     #raise HTTPException(status_code=400,detail="El producto no existe")
-    return{"estado":"El producto fue registrado"}
+
+  guardar_producto=actualizar_producto(ProductoInDB(**producto_in.dict()))
+  return{"estado":"El producto fue registrado"}
   
-  return{"estado":"El producto ya esta registrado"}
+  
   
   
 
