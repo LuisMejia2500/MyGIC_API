@@ -16,7 +16,7 @@ async def auth_producto(producto_in:ProductoIn):
     #raise HTTPException(status_code=400,detail="El producto no existe")
 
   guardar_producto=actualizar_producto(ProductoInDB(**producto_in.dict()))
-  return{"estado":"El producto fue registrado"}
+  return{"estado":"El producto fue registrado" + producto_in_db }
   
   
   
